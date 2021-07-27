@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import TextField, { Input } from '@material/react-text-field/dist/index';
 import MaterialIcon from '@material/react-material-icon/dist/index';
-import Slider from 'react-slick';
 
 import logo from '../../assets/logo.svg';
 import restaurante from '../../assets/restaurante-fake.png';
-import { Container, Search, Logo, Wrapper, Map, CarousselTitle } from './styles';
-import { Card } from '../../components';
+import { Container, Search, Logo, Wrapper, Map, CarousselTitle, Caroussel } from './styles';
+import { Card, RestaurantCard, Modal } from '../../components';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState();
+  const [modalOpenned, setModalOpenned] = useState(false);
 
   const settings = {
     dots: false,
@@ -32,15 +32,18 @@ const Home = () => {
             <Input value={inputValue} onchange={(e) => setInputValue(e.target.value)} />
           </TextField>
           <CarousselTitle>Na sua Área</CarousselTitle>
-          <Slider {...settings}>
-            <Card photo={restaurante} title='restaurante'/>
-            <Card photo={restaurante} title='restaurante'/>
-            <Card photo={restaurante} title='restaurante'/>
-            <Card photo={restaurante} title='restaurante'/>
-          </Slider>
+          <Caroussel {...settings}>
+            <Card photo={restaurante} title="restaurante" />
+            <Card photo={restaurante} title="restaurante" />
+            <Card photo={restaurante} title="restaurante" />
+            <Card photo={restaurante} title="restaurante" />
+          </Caroussel>
+          <button onClick={() => setModalOpenned(true)}>Abrir modal</button>
         </Search>
+        <RestaurantCard />
       </Container>
       <Map />
+      <Modal open={modalOpenned} onClose={() => setModalOpenned(!modalOpenned)} />
     </Wrapper>
   );
 };
