@@ -36,6 +36,7 @@ export const Address = styled.span`
 `
 
 export const RestaurantPhoto = styled.img`
+  display: ${props => (props.imageLoaded ? 'block' : 'none')}
   height: 100px;
   width: 100px;
   object-fit: cover;
